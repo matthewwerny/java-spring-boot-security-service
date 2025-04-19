@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.app.presentation.bind.Message;
 
 @RestController()
-public class HelloController {
+public class RootController {
 
 	@GetMapping(value = "/public", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> publicEndpoint() {

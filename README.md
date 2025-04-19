@@ -31,6 +31,12 @@ Build the JAR:
 mvn package
 ```
 
+Run the integration tests:
+
+```bash
+mvn integration-test
+```
+
 Run the program:
 
 ```bash
