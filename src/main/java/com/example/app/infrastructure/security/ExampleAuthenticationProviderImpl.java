@@ -1,4 +1,4 @@
-package com.example.app.common.security;
+package com.example.app.infrastructure.security;
 
 import java.util.List;
 import java.util.Objects;

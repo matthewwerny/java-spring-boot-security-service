@@ -1,7 +1,8 @@
-package com.example.app.common.security;
+package com.example.app.infrastructure.security;
+
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
@@ -10,8 +11,8 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 
 import com.example.app.presentation.bind.ErrorInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,11 +20,11 @@ import jakarta.servlet.http.HttpServletResponse;
 @Named
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
-	private final ObjectMapper mapper = new ObjectMapper();
+	private final ObjectMapper objectMapper;
 
-	public RestAuthenticationEntryPoint() {
-		mapper.registerModule(new JavaTimeModule());
-		mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
+	@Inject
+	public RestAuthenticationEntryPoint(final ObjectMapper objectMapper) {
+		this.objectMapper = requireNonNull(objectMapper, "objectMapper shall not be null");
 	}
 
 	@Override
@@ -39,6 +40,6 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 		response.setStatus(status);
 		response.setContentType("application/json");
 
-		mapper.writeValue(response.getWriter(), errorInfo);
+		objectMapper.writeValue(response.getWriter(), errorInfo);
 	}
 }

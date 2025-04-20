@@ -9,8 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.example.app.common.security.ExampleAuthenticationProviderImpl;
-import com.example.app.common.security.RestAuthenticationEntryPoint;
+import com.example.app.infrastructure.security.ExampleAuthenticationProviderImpl;
+import com.example.app.infrastructure.security.RestAuthenticationEntryPoint;
 
 /**
  * Security configuration class. This class configures the security settings for
